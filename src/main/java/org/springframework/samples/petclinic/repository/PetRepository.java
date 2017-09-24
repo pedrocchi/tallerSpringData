@@ -20,18 +20,25 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface PetRepository extends JpaRepository<Pet, Integer> {
+public interface PetRepository extends Repository<Pet, Integer> {
 
     @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
     @Transactional(readOnly = true)
     List<PetType> findPetTypes();
 
     List<Pet> findByBirthDateBetweenOrderByBirthDateAsc(Date d1, Date d2);
+  
+    void save (Pet p);
     
+    @Transactional(readOnly = true)
+    Pet findById(Integer id);
     
 }
 

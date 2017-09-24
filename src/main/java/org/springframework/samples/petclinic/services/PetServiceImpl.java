@@ -19,5 +19,9 @@ public class PetServiceImpl implements PetService {
 		return petRepository.findByBirthDateBetweenOrderByBirthDateAsc(d1, d2);
 	}
 
+	@Override
+	public void save(Pet p) {
+		petRepository.save(p);
+	}
 	
 }

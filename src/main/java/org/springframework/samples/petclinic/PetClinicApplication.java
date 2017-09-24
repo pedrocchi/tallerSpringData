@@ -40,6 +40,7 @@ import org.springframework.samples.petclinic.repository.SpecialityRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.services.OwnerService;
 import org.springframework.samples.petclinic.services.PetService;
+import org.springframework.samples.petclinic.services.VisitService;
 
 /**
  * PetClinic Spring Boot Application.
@@ -149,35 +150,13 @@ public class PetClinicApplication {
 		};
     }
     
-    @Bean
-	public CommandLineRunner demoPetRepository(PetRepository petRepository, PetTypeRepository petTypeRepository, OwnerRepository ownerRepository) {
-		return (args) -> {
-			log.info("*****************************************************");
-		    log.info("BOOTCAMP - Spring y Spring Data - PetRepository");
-		    log.info("*****************************************************");
-		    
-		    log.info("crear 5 visitas nuevas para una mascota en meses distintos");
-		    Pet p = petRepository.findOne(1);
-		    	Visit v1 = new Visit();
-		    	Visit v2 = new Visit();
-		    	Visit v3 = new Visit();
-		    	Visit v4 = new Visit();
-		    	Visit v5 = new Visit();
-		    	v1.setDate(new DateTime(2017,3,4,0,0).toDate());
-		    	v2.setDate(new DateTime(2017,3,1,0,0).toDate());
-		    	v3.setDate(new DateTime(2017,3,2,0,0).toDate());
-		    	v4.setDate(new DateTime(2017,3,3,0,0).toDate());
-		    	v5.setDate(new DateTime(2017,3,6,0,0).toDate());
-		    p.addVisit(v1);
-		    p.addVisit(v2);
-		    p.addVisit(v3);
-		    p.addVisit(v4);
-		    p.addVisit(v5);
-		    log.info(p.getId().toString());
-		    log.info(v1.toString());
-		    
-//			petRepository.save(p); NO porque usamos un objeto existente en db
-		    
+//    @Bean
+//	public CommandLineRunner demoPetRepository(PetRepository petRepository, PetTypeRepository petTypeRepository, OwnerRepository ownerRepository) {
+//		return (args) -> {
+//			log.info("*****************************************************");
+//		    log.info("BOOTCAMP - Spring y Spring Data - PetRepository");
+//		    log.info("*****************************************************");
+//		    
 //		    PetType pt1 = petTypeRepository.findOne(1);
 //		    PetType pt2 = petTypeRepository.findOne(2);
 //		    PetType pt3 = petTypeRepository.findOne(3);
@@ -203,7 +182,7 @@ public class PetClinicApplication {
 //		    p3.setType(pt3);
 //		    p3.setName("C");
 //		    p3.setOwner(o3);
-		    
+//		    
 //			log.info("Persistir objetos");
 //			petRepository.save(p1);
 //			petRepository.save(p2);
@@ -211,9 +190,9 @@ public class PetClinicApplication {
 //			for(Pet p: petRepository.findAll()){
 //				log.info(p.toString());
 //			}
-		    
-		};
-    }
+//		    
+//		};
+//    }
 
 	@Bean
 	public CommandLineRunner demoPetService(PetService petService) {
@@ -228,16 +207,69 @@ public class PetClinicApplication {
 		    		log.info("Pet: "+p);
 		    }
 		    
-		    log.info("obtener todas las visitas para dicha mascota");
+		    
+		    log.info("devolver una lista de mascotas con un campo nuevo que indique el num de visitas realizadas en total");
 
+		   
+		};
+    }
+	
+	
+	@Bean
+	public CommandLineRunner demoVisitService(VisitService visitService) {
+		return (args) -> {
+			log.info("*****************************************************");
+		    log.info("BOOTCAMP - Spring y Spring Data - VisitService");
+		    log.info("*****************************************************");
+		   
+		    log.info("crear 5 visitas nuevas para una mascota en meses distintos");
+
+		    List<Visit> visit = visitService.findByPetId(1);
+		    	Visit v1 = new Visit();
+		    	Visit v2 = new Visit();
+		    	Visit v3 = new Visit();
+		    	Visit v4 = new Visit();
+		    	Visit v5 = new Visit();
+		    	v1.setDate(new DateTime(2017,1,1,0,0).toDate());
+		    	v2.setDate(new DateTime(2017,2,1,0,0).toDate());
+		    	v3.setDate(new DateTime(2017,3,1,0,0).toDate());
+		    	v4.setDate(new DateTime(2017,4,1,0,0).toDate());
+		    	v5.setDate(new DateTime(2017,5,1,0,0).toDate());
+		    	v1.setPetId(1);
+		    	v2.setPetId(1);
+		    	v3.setPetId(1);
+		    	v4.setPetId(1);
+		    	v5.setPetId(1);
+		    	v1.setDescription("A");
+		    	v2.setDescription("A");
+		    	v3.setDescription("A");
+		    	v4.setDescription("A");
+		    	v5.setDescription("A");
+		    	visit.add(v1);
+		    	visit.add(v2);
+		    	visit.add(v3);
+		    	visit.add(v4);
+		    	visit.add(v5);
+		    	log.info(visit.toString());
+		    	visitService.save(visit);
+
+		    log.info("obtener todas las visitas para dicha mascota");
+		    List<Visit> l1 = visitService.findByPetId(1);
+		    for(Visit v: l1) {
+		    		log.info(v.toString());
+		    }
+		    
+		    List<Visit> l2 = visitService.findByPetId(7);
+		    for(Visit v: l2) {
+		    		log.info(v.toString());
+		    }
 		    
 		    log.info("obtener las 3 visitas más recientes de todo el sistema");
-		    
-		    
-		    log.info("devolver una lista de mascotas con un campo nuevo que indique el nuem de visitas realizadas en total");
-		    
-		    
-		    
+		    List<Visit> l3 = visitService.findTop3ByOrderByDateDesc();
+		    for(Visit v: l3) {
+		    		log.info(v.toString());
+		    }
+		   
 		};
     }
 }

@@ -34,5 +34,6 @@ public interface OwnerRepository extends JpaRepository<Owner, Integer> {
     
     List<Owner> findByOrderByLastNameDesc();
     
+    
 }
  
