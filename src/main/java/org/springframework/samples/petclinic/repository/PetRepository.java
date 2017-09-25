@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,8 +31,6 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
     List<PetType> findPetTypes();
 
     List<Pet> findByBirthDateBetweenOrderByBirthDateAsc(Date d1, Date d2);
-  
-    //void save (Pet p);
     
     @Transactional(readOnly = true)
     Pet findById(Integer id);

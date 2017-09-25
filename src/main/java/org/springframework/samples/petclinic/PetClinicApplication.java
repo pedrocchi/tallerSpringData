@@ -16,10 +16,7 @@
 
 package org.springframework.samples.petclinic;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,15 +24,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.format.datetime.joda.DateTimeParser;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
-import org.springframework.samples.petclinic.repository.PetRepository;
-import org.springframework.samples.petclinic.repository.PetTypeRepository;
 import org.springframework.samples.petclinic.repository.SpecialityRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.services.OwnerService;
@@ -150,49 +144,7 @@ public class PetClinicApplication {
 		};
     }
     
-//    @Bean
-//	public CommandLineRunner demoPetRepository(PetRepository petRepository, PetTypeRepository petTypeRepository, OwnerRepository ownerRepository) {
-//		return (args) -> {
-//			log.info("*****************************************************");
-//		    log.info("BOOTCAMP - Spring y Spring Data - PetRepository");
-//		    log.info("*****************************************************");
-//		    
-//		    PetType pt1 = petTypeRepository.findOne(1);
-//		    PetType pt2 = petTypeRepository.findOne(2);
-//		    PetType pt3 = petTypeRepository.findOne(3);
-//
-//		    Owner o1 = ownerRepository.findOne(1);
-//		    Owner o2 = ownerRepository.findOne(2);
-//		    Owner o3 = ownerRepository.findOne(3);
-//		    
-//		    Pet p1 = new Pet();
-//		    p1.setBirthDate(new Date(2010, 2, 17));
-//		    p1.setType(pt1);
-//		    p1.setName("A");
-//		    p1.setOwner(o1);
-//		    
-//		    Pet p2 = new Pet();
-//		    p2.setBirthDate(new Date(2010, 7, 18));
-//		    p2.setType(pt2);
-//		    p2.setName("B");
-//		    p2.setOwner(o2);
-//		    
-//		    Pet p3 = new Pet();
-//		    p3.setBirthDate(new Date(2011, 2, 17));
-//		    p3.setType(pt3);
-//		    p3.setName("C");
-//		    p3.setOwner(o3);
-//		    
-//			log.info("Persistir objetos");
-//			petRepository.save(p1);
-//			petRepository.save(p2);
-//			petRepository.save(p3);
-//			for(Pet p: petRepository.findAll()){
-//				log.info(p.toString());
-//			}
-//		    
-//		};
-//    }
+
 
 	@Bean
 	public CommandLineRunner demoPetService(PetService petService) {
@@ -274,4 +226,52 @@ public class PetClinicApplication {
 		   
 		};
     }
+	
+	
+	
+	
+	
+//  @Bean
+//	public CommandLineRunner demoPetRepository(PetRepository petRepository, PetTypeRepository petTypeRepository, OwnerRepository ownerRepository) {
+//		return (args) -> {
+//			log.info("*****************************************************");
+//		    log.info("BOOTCAMP - Spring y Spring Data - PetRepository");
+//		    log.info("*****************************************************");
+//		    
+//		    PetType pt1 = petTypeRepository.findOne(1);
+//		    PetType pt2 = petTypeRepository.findOne(2);
+//		    PetType pt3 = petTypeRepository.findOne(3);
+//
+//		    Owner o1 = ownerRepository.findOne(1);
+//		    Owner o2 = ownerRepository.findOne(2);
+//		    Owner o3 = ownerRepository.findOne(3);
+//		    
+//		    Pet p1 = new Pet();
+//		    p1.setBirthDate(new Date(2010, 2, 17));
+//		    p1.setType(pt1);
+//		    p1.setName("A");
+//		    p1.setOwner(o1);
+//		    
+//		    Pet p2 = new Pet();
+//		    p2.setBirthDate(new Date(2010, 7, 18));
+//		    p2.setType(pt2);
+//		    p2.setName("B");
+//		    p2.setOwner(o2);
+//		    
+//		    Pet p3 = new Pet();
+//		    p3.setBirthDate(new Date(2011, 2, 17));
+//		    p3.setType(pt3);
+//		    p3.setName("C");
+//		    p3.setOwner(o3);
+//		    
+//			log.info("Persistir objetos");
+//			petRepository.save(p1);
+//			petRepository.save(p2);
+//			petRepository.save(p3);
+//			for(Pet p: petRepository.findAll()){
+//				log.info(p.toString());
+//			}
+//		    
+//		};
+//  }
 }
