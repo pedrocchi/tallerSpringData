@@ -117,7 +117,7 @@ public class Pet extends NamedEntity {
 
 	@Override
 	public String toString() {
-		return "Pet [birthDate=" + birthDate + ", type=" + type + ", getName()=" + getName() + "]";
+		return "Pet [birthDate=" + birthDate + ", type=" + type + ", getName()=" + getName() + ", getVisits()=" + getVisits() + "]";
 	}
 
 	

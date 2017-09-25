@@ -23,5 +23,11 @@ public class PetServiceImpl implements PetService {
 	public void save(Pet p) {
 		petRepository.save(p);
 	}
+
+	@Override
+	public List<Pet> findAll() {
+		// TODO Auto-generated method stub
+		return petRepository.findAll();
+	}
 	
 }

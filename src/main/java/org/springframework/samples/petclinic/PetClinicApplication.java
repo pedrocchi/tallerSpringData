@@ -209,8 +209,10 @@ public class PetClinicApplication {
 		    
 		    
 		    log.info("devolver una lista de mascotas con un campo nuevo que indique el num de visitas realizadas en total");
+		    for(Pet p: petService.findAll()) {
+		    		log.info(p.toString());
+		    }
 
-		   
 		};
     }
 	
